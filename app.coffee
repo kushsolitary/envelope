@@ -15,6 +15,8 @@ s = Framer.Importer.load "imported/envelope"
 s.content2.y += 40
 s.content3.y += 40
 
+s.flap.originY = 0.98
+
 # Start animation on button click mothafucka
 s.button1.on Events.Click, ->
 	# Things to do on-click
@@ -52,13 +54,18 @@ s.button1.on Events.Click, ->
 
 	Utils.delay 1, ->
 		s.content1.animate
-			properties: {y: s.content1.y + 200}
+			properties: {y: s.content1.y + 230}
 		s.content2.animate
-			properties: {y: s.content2.y + 200}
+			properties: {y: s.content2.y + 230}
 		s.content3.animate
-			properties: {y: s.content3.y + 200}
+			properties: {y: s.content3.y + 230}
 
 	Utils.delay 1.5, ->
+		s.flap.index = s.envelope.index + 1
+		s.flap.animate
+			properties: {rotationX: -180}
+
+	Utils.delay 2, ->
 		s.envelope.animate
 			properties: {y: s.envelope.y - 900}
 			curve: "spring(200,40,0)"
@@ -68,11 +75,11 @@ s.button1.on Events.Click, ->
 			curve: "spring(200,40,0)"
 
 		s.content1.animate
-			properties: {y: s.content1.y - 950}
+			properties: {y: s.content1.y - 960}
 		s.content2.animate
-			properties: {y: s.content2.y - 950}
+			properties: {y: s.content2.y - 960}
 		s.content3.animate
-			properties: {y: s.content3.y - 950}
+			properties: {y: s.content3.y - 960}
 
 		s.neeche_wala.animate
 			properties: {y: s.neeche_wala.y - 940}
